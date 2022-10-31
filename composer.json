@@ -1,0 +1,5 @@
+{
+    "require": {
+        "duzun/hquery": "^3.0"
+    }
+}
