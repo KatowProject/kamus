@@ -1,26 +1,42 @@
 <?php 
 require_once __DIR__ . '/vendor/autoload.php';
 use duzun\hQuery;
-
 class Scraper {
     CONST URL = "http://kamus-sunda.com/sekolah-ikatan-dinas-langsung-kerja.html";
 
+    public $type = [
+        "is" => "Sunda Sedang",
+        "ish" => "Sunda Halus",
+        "isk" => "Sunda Kasar",
+    ];
 
     public function get_data($word, $type) {
         $get_html = $this->get_html($word, $type);
         $doc = hQuery::fromHTML($get_html);
 
-        $words = $doc->find("div.result3")->text();
+        // get index 2 of class result3
+        $words = $doc->find(".result3")->eq(1)->text();
         $pword = $doc->find("div.tkata");
 
         $arr_words = [];
         foreach($pword as $word) {
-            array_push($arr_words, $word->text());
+            $txt = $word->text();
+
+            $w = explode(":", $txt);
+            $n = trim($w[0]);
+            $tl = trim($w[1]);
+
+            $arr_words[] = [
+                "name" => $n,
+                "translation" => $tl
+            ];
         }
+
 
         return [
             'text' => $words,
-            'words' => $arr_words
+            'words' => $arr_words,
+            'type' => $this->type[$type]
         ];
     }
 
