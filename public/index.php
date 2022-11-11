@@ -1,5 +1,6 @@
 <?php
     define('BASEPATH', 'public');
+    
     require "../controllers/controllers.php";
     $controller = new Controller();
 ?>
