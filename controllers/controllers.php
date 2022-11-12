@@ -20,28 +20,31 @@ class Controller extends Database {
 
     public function get_word($word, $type) {
         $_type = $this->type[$type];
-        $result = $this->get($word, $_type);
+        $result = $this->get(strtolower($word), $_type);
 
-        if($result) {
+        if($result):
             return $result;
-        } else {
+        else:
             $result = $this->scraper->get_data($word, $type);
-            if ($result) {
-                // if type result is array
-                // if (is_array($result)) {
-                //     foreach ($result as $key => $value) {
-                //         $this->insert($word, $_type);
-                //     }
-
-                //     return $result;
-                // } else {
-                //     $this->insert($word, $_type);
-                //     return $result;
-                // }
+            if($result):
+                $this->insert(array(
+                    'word' => $word,
+                    'translated' => $result['word'],
+                    'type' => $result['type']
+                ));
                 return $result;
-            } else {
-                return false;
-            }
-        }
+            else:
+                return $word;
+            endif;
+        endif;
+    }
+
+    static function splitRemoveSpecialChars($word) {
+        $words = preg_split('/\s+/', $word);
+        $words = array_map(function($word) {
+            return preg_replace('/[^A-Za-z0-9\-]/', '', $word);
+        }, $words);
+
+        return $words;
     }
 }

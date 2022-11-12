@@ -5,37 +5,27 @@ class Scraper {
     CONST URL = "http://kamus-sunda.com/sekolah-ikatan-dinas-langsung-kerja.html";
 
     public $type = [
-        "is" => "Sunda Sedang",
-        "ish" => "Sunda Halus",
-        "isk" => "Sunda Kasar",
+        "is" => 2,
+        "ish" => 3,
+        "isk" => 4,
     ];
 
     public function get_data($word, $type) {
         $get_html = $this->get_html($word, $type);
         $doc = hQuery::fromHTML($get_html);
 
-        // get index 2 of class result3
-        $words = $doc->find(".result3")->eq(1)->text();
         $pword = $doc->find("div.tkata");
-
-        $arr_words = [];
-        foreach($pword as $word) {
-            $txt = $word->text();
-
+        if (!isset($pword)) return false;
+        
+        $tl = null;
+        foreach ($pword as $key => $value):
+            $txt = $value->text();
             $w = explode(":", $txt);
-            $n = trim($w[0]);
             $tl = trim($w[1]);
-
-            $arr_words[] = [
-                "name" => $n,
-                "translation" => $tl
-            ];
-        }
-
+        endforeach;
 
         return [
-            'text' => $words,
-            'words' => $arr_words,
+            'word' => $tl,
             'type' => $this->type[$type]
         ];
     }

@@ -15,32 +15,26 @@ class Database {
     }
 
     function get($word, $type) {
-        $query = "SELECT * FROM word WHERE name = ? AND type_id = ?";
+        // get word and get type name in relation
+        $query = "SELECT word.*, lang_type.language FROM word LEFT JOIN lang_type ON word.type_id = lang_type.id WHERE word.name = ? AND word.type_id = ?";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param("si", $word, $type);
+        $stmt->bind_param("ss", $word, $type);
         $stmt->execute();
 
+        // return result one row
         $result = $stmt->get_result();
         $row = $result->fetch_assoc();
 
-        if($row):
-            return $row;
-        else:
-            return false;
-        endif;
+        return $row;
     }
 
-    function insert($word, $type) {
-        $query = "INSERT INTO word (name, type_id) VALUES (?, ?)";
+    function insert($word) {
+        $query = "INSERT INTO word (name, translated, type_id) VALUES (?, ?, ?)";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param("si", $word, $type);
+        $stmt->bind_param("sss", $word['word'], $word['translated'], $word['type']);
         $stmt->execute();
 
-        if($stmt->affected_rows > 0):
-            return true;
-        else:
-            return false;
-        endif;
+        return $stmt->affected_rows;
     }
 
     function get_lang() {
