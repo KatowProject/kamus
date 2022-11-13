@@ -16,7 +16,7 @@ class Database {
 
     function get($word, $type) {
         // get word and get type name in relation
-        $query = "SELECT word.*, lang_type.language FROM word LEFT JOIN lang_type ON word.type_id = lang_type.id WHERE word.name = ? AND word.type_id = ?";
+        $query = "SELECT word.*, lang_type.lang FROM word LEFT JOIN lang_type ON word.type_id = lang_type.id WHERE word.name = ? AND word.type_id = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("ss", $word, $type);
         $stmt->execute();

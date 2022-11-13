@@ -18,6 +18,12 @@ class Controller extends Database {
         "isk" => 4,
     ];
 
+    public $type_h = [
+        "is" => "Sunda Sedang",
+        "ish" => "Sunda Halus",
+        "isk" => "Sunda Kasar",
+    ];
+
     public function get_word($word, $type) {
         $_type = $this->type[$type];
         $result = $this->get(strtolower($word), $_type);
@@ -32,9 +38,15 @@ class Controller extends Database {
                     'translated' => $result['word'],
                     'type' => $result['type']
                 ));
+                
+                $result['lang'] = $this->type_h[$type];
                 return $result;
             else:
-                return $word;
+                return [
+                    'word' => $word,
+                    'translated' => $word,
+                    'lang' => 'Native'
+                ];
             endif;
         endif;
     }

@@ -25,7 +25,8 @@ class Scraper {
         endforeach;
 
         return [
-            'word' => $tl,
+            'word' => $word,
+            'translated' => $tl,
             'type' => $this->type[$type]
         ];
     }
