@@ -1,0 +1,32 @@
+/* import Satoshi Font */
+@font-face {
+    font-family: 'Satoshi';
+    src: url('../fonts/Satoshi-Regular.eot');
+    src: url('../fonts/Satoshi-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Satoshi-Regular.woff') format('woff'),
+        url('../fonts/Satoshi-Regular.ttf') format('truetype'),
+        url('../fonts/Satoshi-Regular.svg#Satoshi-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: 'Satoshi', sans-serif;
+}
+
+.navbar {
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.navbar-nav .nav-link {
+    font-size: 0.9rem;
+}
+
+.navbar-brand span {
+    color: #f9a826;
+}
+
+header {
+    border-bottom: 2px solid #eaeaea;
+}
