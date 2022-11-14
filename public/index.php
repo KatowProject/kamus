@@ -69,7 +69,7 @@
                         <form action="" method="POST">
                             <div class="mb-3">
                                 <label for="word" class="form-label">Word</label>
-                                <input type="text" class="form-control" id="word" name="word" placeholder="Enter word" required>
+                                <input type="text" class="form-control" id="word" name="word" placeholder="Enter word" value="<?= $_POST['word'] ?? '' ?>" required>
                             </div>
                             <div class="mb-3">
                                 <label for="type" class="form-label">Type</label>
