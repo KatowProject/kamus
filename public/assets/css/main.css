@@ -27,6 +27,14 @@
     color: #f9a826;
 }
 
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    border-top: 2px solid #eaeaea;
+}
+
 header {
     border-bottom: 2px solid #eaeaea;
 }

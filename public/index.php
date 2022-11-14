@@ -64,8 +64,8 @@
         <main>
             <div class="container py-3">
                 <div class="row">
-                    <div class="col-12">
-                        <h2 class="text-center">Kamus Sunda</h2>
+                    <div class="col-lg-6" style="float:none;margin:auto;">
+                        <h2 class="text-center mb-3"><b>Kamus Sunda</b></h2>
                         <form action="" method="POST">
                             <div class="mb-3">
                                 <label for="word" class="form-label">Word</label>
@@ -87,14 +87,11 @@
                         </form>
                     </div>
                 </div>
-            </div>
-        </main>
 
-        <?php if ($sentence != null): ?>
-            <div class="container">
-                <div class="row">
+            <?php if ($sentence != null): ?>
+                <div class="row py-5">
                     <div class="col-12">
-                        <h2 class="text-center">Result</h2>
+                        <h2 class="text-center"><b>Result</b></h2>
                         <table class="table">
                             <thead>
                                 <tr>
@@ -104,19 +101,27 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($sentence as $key => $value): ?>
-                                    <tr>
-                                        <td><?= $value['name'] ?? $value['word']?></td>
-                                        <td><?= $value['translated'] ?></td>
-                                        <td><?= $value['lang'] ?></td>
-                                    </tr>
-                                <?php endforeach; ?>
+                            <?php foreach ($sentence as $key => $value): ?>
+                                <tr>
+                                    <td><?= $value['name'] ?? $value['word']?></td>
+                                    <td><?= $value['translated'] ?></td>
+                                    <td><?= $value['lang'] ?></td>
+                                </tr>
+                            <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>
                 </div>
+            <?php endif; ?>   
             </div>
-        <?php endif; ?>   
+        </main>
+        
+        <!-- fixed bottom footer -->
+        <footer class="text-lg-start">
+            <div class="text-center p-3">
+                Copyright &copy; 2022 - IF21B Kelompok 4
+            </div>
+        </footer>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
