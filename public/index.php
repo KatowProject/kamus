@@ -11,7 +11,11 @@
         
             $words = $controller::splitRemoveSpecialChars($word);
             foreach ($words as $key => $word) {
-                $sentence[] = $controller->get_word($word, $type);
+                // if this object name already exist, then skip it
+                if (isset($sentence[$word])) continue;
+                
+                $get_word = $controller->get_word($word, $type);
+                array_push($sentence, $get_word);
             }
         else :
             $sentence = null;
@@ -117,7 +121,7 @@
         </main>
         
         <!-- fixed bottom footer -->
-        <footer class="text-lg-start">
+        <footer class="text-lg-start bg-light">
             <div class="text-center p-3">
                 Copyright &copy; 2022 - IF21B Kelompok 4
             </div>
