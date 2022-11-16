@@ -5,17 +5,16 @@
     
     try {
         $sentence = [];
+        $sentences = [];
         if (isset($_POST['submit'])):
             $word = $_POST['word'];
             $type = $_POST['type'];
-        
+            
             $words = $controller::splitRemoveSpecialChars($word);
             foreach ($words as $key => $word) {
-                // if this object name already exist, then skip it
-                if (isset($sentence[$word])) continue;
-                
                 $get_word = $controller->get_word($word, $type);
                 array_push($sentence, $get_word);
+                array_push($sentences, $get_word['translated']);
             }
         else :
             $sentence = null;
@@ -65,7 +64,7 @@
             </nav>
         </header>
 
-        <main>
+        <main class="d-flex align-items-center" style="min-height: 75vh;">
             <div class="container py-3">
                 <div class="row">
                     <div class="col-lg-6" style="float:none;margin:auto;">
@@ -94,6 +93,24 @@
 
             <?php if ($sentence != null): ?>
                 <div class="row py-5">
+                    <div class="col-12">
+                        <div class="card text-white bg-primary mb-3" style="max-width: auto;">
+                            <div class="card-header">Indonesia</div>
+                            <div class="card-body">
+                                <p class="card-text"><?= $_POST['word'] ?></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="card text-white bg-primary mb-3" style="max-width: auto;">
+                            <div class="card-header">Sunda</div>
+                            <div class="card-body">
+                                <p class="card-text"> <?= join(' ', $sentences) ?></p>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="col-12">
                         <h2 class="text-center"><b>Result</b></h2>
                         <table class="table">
