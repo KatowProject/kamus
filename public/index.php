@@ -4,7 +4,6 @@
     $controller = new Controller();
     
     try {
-        $sentence = [];
         $sentences = [];
         if (isset($_POST['submit'])):
             $word = $_POST['word'];
@@ -13,8 +12,8 @@
             $words = $controller::splitRemoveSpecialChars($word);
             foreach ($words as $key => $word) {
                 $get_word = $controller->get_word($word, $type);
-                array_push($sentence, $get_word);
-                array_push($sentences, $get_word['translated']);
+                if (in_array($get_word, $sentences)) continue;
+                array_push($sentences, $get_word);
             }
         else :
             $sentence = null;
@@ -91,28 +90,31 @@
                     </div>
                 </div>
 
-            <?php if ($sentence != null): ?>
+            <?php if ($sentences != null): ?>
                 <div class="row py-5">
+                    <div class="col-12 py-3">
+                        <h2 class="text-center"><b>Result</b></h2>
+                    </div>
+
                     <div class="col-12">
-                        <div class="card text-white bg-primary mb-3" style="max-width: auto;">
-                            <div class="card-header">Indonesia</div>
-                            <div class="card-body">
+                        <div class="card mb-3" style="max-width: auto;">
+                            <div class="card-header bg-secondary text-white">Indonesia</div>
+                            <div class="card-body bg-white">
                                 <p class="card-text"><?= $_POST['word'] ?></p>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-12">
-                        <div class="card text-white bg-primary mb-3" style="max-width: auto;">
-                            <div class="card-header">Sunda</div>
-                            <div class="card-body">
-                                <p class="card-text"> <?= join(' ', $sentences) ?></p>
+                        <div class="card mb-3" style="max-width: auto;">
+                            <div class="card-header bg-secondary text-white">Sunda</div>
+                            <div class="card-body bg-white">
+                                <p class="card-text"> <?php foreach ($sentences as $key => $value) echo $value['translated'] . " "; ?> </p>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-12">
-                        <h2 class="text-center"><b>Result</b></h2>
                         <table class="table">
                             <thead>
                                 <tr>
@@ -122,7 +124,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php foreach ($sentence as $key => $value): ?>
+                            <?php foreach ($sentences as $key => $value): ?>
                                 <tr>
                                     <td><?= $value['name'] ?? $value['word']?></td>
                                     <td><?= $value['translated'] ?></td>
