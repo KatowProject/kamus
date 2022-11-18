@@ -6,7 +6,7 @@
     try {
         $sentences = [];
         if (isset($_POST['submit'])):
-            $word = $_POST['word'];
+            $word = isset($_POST['word']) ? trim($_POST['word']) : '';
             $type = $_POST['type'];
             
             $words = $controller::splitRemoveSpecialChars($word);
