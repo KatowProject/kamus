@@ -27,6 +27,20 @@
     color: #f9a826;
 }
 
+.row {
+    --bs-gutter-x: 0;
+}
+
+.vertical-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.justify-content-center {
+    justify-content: center !important;
+}
+
 footer {
     position: fixed;
     left: 0;
@@ -37,6 +51,10 @@ footer {
 
 header {
     border-bottom: 2px solid #eaeaea;
+}
+
+.bg-dark {
+    background-color: #1a1a1a !important;
 }
 
 /* scroll bar */
@@ -57,4 +75,11 @@ header {
 
 ::-webkit-scrollbar-thumb:hover {
     background-color: #a8bbbf;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text: #fff;
+        --bg: #000;
+    }
 }
