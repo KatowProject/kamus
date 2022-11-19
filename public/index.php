@@ -10,11 +10,11 @@
             $type = $_POST['type'];
             
             $words = $controller::splitRemoveSpecialChars($word);
-            foreach ($words as $key => $word) {
+            foreach ($words as $key => $word):
                 $get_word = $controller->get_word($word, $type);
                 if (in_array($get_word, $sentences)) continue;
                 array_push($sentences, $get_word);
-            }
+            endforeach;
         else :
             $sentence = null;
         endif;
@@ -31,7 +31,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="assets/css/main.css" rel="stylesheet">
-        <title>Home</title>
+        <title>Translate • SATECH</title>
     </head>
 
     <body class="bg-light">
@@ -55,7 +55,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link active" href="#">Translation</a>
+                                <a class="nav-link active" href="#">Translate</a>
                             </li>
                         </ul>
                     </div>

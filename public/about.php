@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/main.css" rel="stylesheet">
-    <title>Tentang Kami</title>
+    <title>About • SATECH</title>
 </head>
 <body class="bg-light">
     <header>
@@ -29,7 +29,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/">Translation</a>
+                            <a class="nav-link" href="/">Translate</a>
                         </li>
                     </ul>
                 </div>
@@ -45,12 +45,17 @@
                     <p>
                         Sebagai Final Project Semester 3 Universitas Buana Perjuangan Karawang
                     </p>
+                    
+                    <!-- button terjemah sekarang-->
+                    <br>
+                    <a href="/" class="btn btn-primary">Terjemah Sekarang</a>
+
                 </div>
             </div>
 
             <div class="col-lg-6">
                 <div class="px-4 py-5">
-                    <img src="https://1734811051.rsc.cdn77.org/data/images/full/362242/translator.jpg" width="100%" class="img-fluid text-center" loading="layz" alt="Responsive image">
+                    <img src="assets/img/thumb.png" width="100%" class="img-fluid text-center" loading="layz" alt="Responsive image">
                 </div>
             </div>
         </div>
