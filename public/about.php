@@ -40,9 +40,9 @@
     <main >
         <div class="row vertical-center" style="min-height: 75vh;">
             <div class="col-lg-6">
-                <div class="h-100 p-5 text-center align-items-center">
-                    <h1>Penerjemah Bahasa Indonesia ke Bahasa Sunda</h1>
-                    <p>
+                <div class="h-100 p-5">
+                    <h1><b>Penerjemah Bahasa Indonesia ke Bahasa Sunda</b></h1>
+                    <p style="font-size: 1.5rem;">
                         Sebagai Final Project Semester 3 Universitas Buana Perjuangan Karawang
                     </p>
                     
