@@ -1,12 +1,14 @@
-<?php 
+<?php
 defined("BASEPATH") or exit("No direct script access allowed");
 
 include_once '../const.php';
 
-class Database {    
+class Database
+{
     public $db;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
         if ($this->db->connect_errno):
             echo "Failed to connect to MySQL: " . $this->db->connect_error;
@@ -14,11 +16,12 @@ class Database {
         endif;
     }
 
-    function get($word, $type) {
+    function get($word, $type)
+    {
         // get word and get type name in relation
-        $query = "SELECT word.*, lang_type.lang FROM word LEFT JOIN lang_type ON word.type_id = lang_type.id WHERE word.name = ? AND word.type_id = ?";
+        $query = "SELECT word.*, lang_type.lang FROM word LEFT JOIN lang_type ON word.type_id = lang_type.id WHERE word.name = ? AND word.type_id = ? OR word.translated = ?";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param("ss", $word, $type);
+        $stmt->bind_param("sss", $word, $type, $word);
         $stmt->execute();
 
         // return result one row
@@ -28,7 +31,8 @@ class Database {
         return $row;
     }
 
-    function insert($word) {
+    function insert($word)
+    {
         $query = "INSERT INTO word (name, translated, type_id) VALUES (?, ?, ?)";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("sss", $word['word'], $word['translated'], $word['type']);
@@ -37,7 +41,8 @@ class Database {
         return $stmt->affected_rows;
     }
 
-    function get_lang() {
+    function get_lang()
+    {
         $query = "SELECT * FROM lang_type";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
@@ -45,7 +50,7 @@ class Database {
         $result = $stmt->get_result();
         $row = $result->fetch_assoc();
 
-        if($row):
+        if ($row):
             return $row;
         else:
             return false;

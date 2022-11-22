@@ -1,24 +1,29 @@
-<?php 
-defined('BASEPATH') OR exit('No direct script access allowed');     
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
 
 require_once __DIR__ . '/vendor/autoload.php';
 use duzun\hQuery;
-class Scraper {
-    CONST URL = "http://kamus-sunda.com/sekolah-ikatan-dinas-langsung-kerja.html";
+
+class Scraper
+{
+    const URL = "http://kamus-sunda.com/sekolah-ikatan-dinas-langsung-kerja.html";
 
     public $type = [
         "is" => 2,
         "ish" => 3,
         "isk" => 4,
+        "sih" => 1
     ];
 
-    public function get_data($word, $type) {
+    public function get_data($word, $type)
+    {
         $get_html = $this->get_html($word, $type);
         $doc = hQuery::fromHTML($get_html);
 
         $pword = $doc->find("div.tkata");
-        if (!isset($pword)) return false;
-        
+        if (!isset($pword))
+            return false;
+
         $tl = null;
         foreach ($pword as $key => $value):
             $txt = $value->text();
@@ -34,7 +39,8 @@ class Scraper {
     }
 
 
-    private function get_html($word, $type) {
+    private function get_html($word, $type)
+    {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, self::URL);
         curl_setopt($ch, CURLOPT_POST, 1);

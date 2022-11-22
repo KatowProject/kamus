@@ -1,165 +1,213 @@
 <?php
-    define('BASEPATH', 'public');
-    require "../controllers/controllers.php";
-    $controller = new Controller();
-    
-    try {
-        $sentences = [];
-        if (isset($_POST['submit'])):
-            $word = isset($_POST['word']) ? trim($_POST['word']) : '';
-            $type = $_POST['type'];
-            
-            $words = $controller::splitRemoveSpecialChars($word);
+define('BASEPATH', 'public');
+require "../controllers/controllers.php";
+$controller = new Controller();
+
+try {
+    $sentences = [];
+    if (isset($_POST['submit'])):
+        $word = isset($_POST['word']) ? trim($_POST['word']) : '';
+        $type = $_POST['type'];
+
+        $words = $controller::splitRemoveSpecialChars($word);
+        if ($type == "i"):
+            foreach ($words as $key => $value):
+                $get_word = $controller->get_word_i($value);
+                if (in_array($get_word, $sentences)):
+                    continue;
+                else:
+                    array_push($sentences, $get_word);
+                endif;
+            endforeach;
+        else:
             foreach ($words as $key => $word):
                 $get_word = $controller->get_word($word, $type);
-                if (in_array($get_word, $sentences)) continue;
+                if (in_array($get_word, $sentences))
+                    continue;
                 array_push($sentences, $get_word);
             endforeach;
-        else :
-            $sentence = null;
         endif;
-    } catch (Exception $e) {
-        echo $e->getMessage();
-    }
-    ?>
+    else:
+        $sentence = null;
+    endif;
+} catch (Exception $e) {
+    echo $e->getMessage();
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="assets/css/main.css" rel="stylesheet">
-        <title>Translate • SATECH</title>
-    </head>
 
-    <body class="bg-light">
-        <header>
-            <nav class="navbar navbar-expand-lg">
-                <div class="container">
-                    <a class="navbar-brand" href="#">SA<span>TECH</span></a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
+    <title>Translate • SATECH</title>
+</head>
 
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="/about">about</a>
-                            </li>
+<body class="bg-light">
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="#">SA<span>TECH</span></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">kamus</a>
-                            </li>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/about">about</a>
+                        </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">Translate</a>
-                            </li>
-                        </ul>
-                    </div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">kamus</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Translate</a>
+                        </li>
+                    </ul>
                 </div>
-            </nav>
-        </header>
+            </div>
+        </nav>
+    </header>
 
-        <main class="d-flex align-items-center" style="min-height: 75vh;">
-            <div class="container py-3">
-                <div class="row">
-                    <div class="col-lg-6" style="float:none;margin:auto;">
-                        <h2 class="text-center mb-3"><b>Kamus Sunda</b></h2>
-                        <form action="" method="POST">
-                            <div class="mb-3">
-                                <label for="word" class="form-label">Word</label>
-                                <input type="text" class="form-control" id="word" name="word" placeholder="Enter word" value="<?= $_POST['word'] ?? '' ?>" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="type" class="form-label">Type</label>
-                                <select class="form-select" aria-label="Default select example" name="type" id="type">
-                                    <option value="" selected>Open this select menu</option>
-                                    <option value="is">Sunda Sedang</option>
-                                    <option value="ish">Sunda Halus</option>
-                                    <option value="isk">Sunda Kasar</option>    
-                                </select>
-                            </div>
+    <main class="d-flex align-items-center" style="min-height: 75vh;">
+        <div class="container py-3">
+            <div class="row">
+                <div class="col-lg-6" style="float:none;margin:auto;">
+                    <h2 class="text-center mb-3"><b>Kamus Sunda</b></h2>
+                    <form action="" method="POST">
+                        <div class="mb-3">
+                            <label for="word" class="form-label">Word</label>
+                            <input type="text" class="form-control" id="word" name="word" placeholder="Enter word"
+                                value="<?= $_POST['word'] ?? '' ?>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="type" class="form-label">Type</label>
+                            <select class="form-select" aria-label="Default select example" name="type" id="type">
+                                <option value="" selected>Open this select menu</option>
+                                <option value="is">Sunda Sedang</option>
+                                <option value="ish">Sunda Halus</option>
+                                <option value="isk">Sunda Kasar</option>
+                                <option value="i">Indonesia</option>
+                            </select>
+                        </div>
 
-                            <div class="col-md-12 text-center">
-                                <button type="submit" class="btn btn-primary" name="submit" id="submit" value="submit">Submit</button>
-                            </div>
-                        </form>
-                    </div>
+                        <div class="col-md-12 text-center">
+                            <button type="submit" class="btn btn-primary" name="submit" id="submit"
+                                value="submit">Submit</button>
+                        </div>
+                    </form>
                 </div>
+            </div>
 
             <?php if ($sentences != null): ?>
-                <div class="row py-5">
-                    <div class="col-12 py-3">
-                        <h2 class="text-center"><b>Result</b></h2>
-                    </div>
+            <div class="row py-5">
+                <div class="col-12 py-3">
+                    <h2 class="text-center"><b>Result</b></h2>
+                </div>
 
-                    <div class="col-12">
-                        <div class="card mb-3" style="max-width: auto;">
-                            <div class="card-header bg-secondary text-white">Indonesia</div>
-                            <div class="card-body bg-white">
-                                <p class="card-text"><?= $_POST['word'] ?></p>
-                            </div>
+                <div class="col-12">
+                    <div class="card mb-3" style="max-width: auto;">
+                        <div class="card-header bg-secondary text-white">Indonesia</div>
+                        <div class="card-body bg-white">
+                            <p class="card-text">
+                                <?php
+                if ($_POST['type'] == "i"):
+                    foreach ($sentences as $key => $sentence):
+                        echo $sentence['word'] ?? $sentence['name'] . " ";
+                    endforeach;
+                else:
+                    echo $_POST['word'];
+                endif;
+                                ?>
+                            </p>
                         </div>
-                    </div>
-
-                    <div class="col-12">
-                        <div class="card mb-3" style="max-width: auto;">
-                            <div class="card-header bg-secondary text-white">Sunda</div>
-                            <div class="card-body bg-white">
-                                <p class="card-text"> <?php foreach ($sentences as $key => $value) echo $value['translated'] . " "; ?> </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Word</th>
-                                    <th scope="col">Translation</th>
-                                    <th scope="col">Type</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <?php foreach ($sentences as $key => $value): ?>
-                                <tr>
-                                    <td><?= $value['name'] ?? $value['word']?></td>
-                                    <td><?= $value['translated'] ?></td>
-                                    <td><?= $value['lang'] ?></td>
-                                </tr>
-                            <?php endforeach; ?>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
-            <?php endif; ?>   
-            </div>
-        </main>
-        
-        <!-- fixed bottom footer -->
-        <footer class="text-lg-start bg-light">
-            <div class="text-center p-3">
-                Copyright &copy; 2022 - IF21B Kelompok 4
-            </div>
-        </footer>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+                <div class="col-12">
+                    <div class="card mb-3" style="max-width: auto;">
+                        <div class="card-header bg-secondary text-white">Sunda</div>
+                        <div class="card-body bg-white">
+                            <p class="card-text">
+                                <?php foreach ($sentences as $key => $value)
+                    echo $value['translated'] . " "; ?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
-        <script>
-            $(document).ready(function() {
-                $('#submit').click(function() {
-                    var word = $('#word').val();
-                    var type = $('#type').val();
-                    if (word == '' || type == '') {
-                        alert('Please fill all the fields');
-                        return false;
-                    }
-                });
+                <div class="col-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Word</th>
+                                <th scope="col">Translation</th>
+                                <th scope="col">Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($sentences as $key => $value): ?>
+                            <tr>
+                                <td>
+                                    <?php
+                    if ($_POST['type'] == "i"):
+                        echo $value['translated'];
+                    else:
+                        echo $value['word'] ?? $value['name'];
+                    endif;
+                                    ?>
+                                </td>
+                                <td>
+                                    <?php
+                    if ($_POST['type'] == "i"):
+                        echo $value['word'] ?? $value['name'];
+                    else:
+                        echo $value['translated'];
+                    endif;
+                                    ?>
+                                </td>
+                                <td>
+                                    <?= $value['lang'] ?>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <?php endif; ?>
+        </div>
+    </main>
+
+    <!-- fixed bottom footer -->
+    <footer class="text-lg-start bg-light">
+        <div class="text-center p-3">
+            Copyright &copy; 2022 - IF21B Kelompok 4
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#submit').click(function () {
+                var word = $('#word').val();
+                var type = $('#type').val();
+                if (word == '' || type == '') {
+                    alert('Please fill all the fields');
+                    return false;
+                }
             });
-        </script>
-    </body>
+        });
+    </script>
+</body>
+
 </html>
