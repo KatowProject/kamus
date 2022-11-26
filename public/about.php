@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
     <link href="assets/css/main.css" rel="stylesheet">
     <title>About • SATECH</title>
 </head>
+
 <body class="bg-light">
     <header>
         <nav class="navbar navbar-expand-lg">
@@ -37,7 +39,7 @@
         </nav>
     </header>
 
-    <main >
+    <main>
         <div class="row vertical-center" style="min-height: 75vh;">
             <div class="col-lg-6">
                 <div class="h-100 p-5">
@@ -45,7 +47,7 @@
                     <p style="font-size: 1.5rem;">
                         Sebagai Final Project Semester 3 Universitas Buana Perjuangan Karawang
                     </p>
-                    
+
                     <!-- button terjemah sekarang-->
                     <br>
                     <a href="/" class="btn btn-primary">Terjemah Sekarang</a>
@@ -55,17 +57,18 @@
 
             <div class="col-lg-6">
                 <div class="px-4 py-5">
-                    <img src="assets/img/thumb.png" width="100%" class="img-fluid text-center" loading="layz" alt="Responsive image">
+                    <img src="assets/img/thumb.png" width="100%" class="img-fluid text-center" loading="layz"
+                        alt="Responsive image">
                 </div>
             </div>
         </div>
 
     </main>
 
-            <!-- fixed bottom footer -->
+    <!-- fixed bottom footer -->
     <footer class="text-lg-start">
         <div class="text-center p-3">
-            Copyright &copy; 2022 - IF21B Kelompok 4
+            Copyright &copy; 2022 - IF21B SA<span>TECH</span>
         </div>
     </footer>
 
@@ -73,4 +76,5 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 </body>
+
 </html>

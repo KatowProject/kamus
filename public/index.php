@@ -10,27 +10,21 @@ try {
         $type = $_POST['type'];
 
         $words = $controller::splitRemoveSpecialChars($word);
-        if ($type == "i"):
-            foreach ($words as $key => $value):
-                $get_word = $controller->get_word_i($value);
-                if (in_array($get_word, $sentences)):
-                    continue;
-                else:
-                    array_push($sentences, $get_word);
-                endif;
-            endforeach;
-        else:
-            foreach ($words as $key => $word):
-                $get_word = $controller->get_word($word, $type);
-                if (in_array($get_word, $sentences))
-                    continue;
-                array_push($sentences, $get_word);
-            endforeach;
-        endif;
-    else:
+        foreach ($words as $key => $word):
+            $get_word = $controller->get_word($word, $type);
+            $w[] = $get_word['translated'];
+
+            if (in_array($get_word, $sentences)):
+                continue;
+            else:
+                $sentences[] = $get_word;
+            endif;
+
+        endforeach;
         $sentence = null;
     endif;
 } catch (Exception $e) {
+    http_response_code(500);
     echo $e->getMessage();
 }
 ?>
@@ -94,7 +88,7 @@ try {
                                 <option value="is">Sunda Sedang</option>
                                 <option value="ish">Sunda Halus</option>
                                 <option value="isk">Sunda Kasar</option>
-                                <option value="i">Indonesia</option>
+                                <option value="sih">Indonesia</option>
                             </select>
                         </div>
 
@@ -114,17 +108,14 @@ try {
 
                 <div class="col-12">
                     <div class="card mb-3" style="max-width: auto;">
-                        <div class="card-header bg-secondary text-white">Indonesia</div>
+                        <div class="card-header bg-secondary text-white">
+                            <?= $_POST['type']=="sih" ? "Sunda" : "Indonesia" ?>
+                        </div>
+
                         <div class="card-body bg-white">
                             <p class="card-text">
                                 <?php
-                if ($_POST['type'] == "i"):
-                    foreach ($sentences as $key => $sentence):
-                        echo $sentence['word'] ?? $sentence['name'] . " ";
-                    endforeach;
-                else:
-                    echo $_POST['word'];
-                endif;
+                echo $_POST['word'];
                                 ?>
                             </p>
                         </div>
@@ -133,11 +124,14 @@ try {
 
                 <div class="col-12">
                     <div class="card mb-3" style="max-width: auto;">
-                        <div class="card-header bg-secondary text-white">Sunda</div>
+                        <div class="card-header bg-secondary text-white">
+                            <?= $_POST['type']=="sih" ? "Indonesia" : "Sunda" ?>
+
+                        </div>
                         <div class="card-body bg-white">
                             <p class="card-text">
-                                <?php foreach ($sentences as $key => $value)
-                    echo $value['translated'] . " "; ?>
+                                <?php foreach ($w as $key => $value)
+                    echo $value . " "; ?>
                             </p>
                         </div>
                     </div>
@@ -157,20 +151,15 @@ try {
                             <tr>
                                 <td>
                                     <?php
-                    if ($_POST['type'] == "i"):
-                        echo $value['translated'];
-                    else:
-                        echo $value['word'] ?? $value['name'];
-                    endif;
+
+                    echo $value['word'] ?? $value['name'] . " ";
                                     ?>
                                 </td>
                                 <td>
                                     <?php
-                    if ($_POST['type'] == "i"):
-                        echo $value['word'] ?? $value['name'];
-                    else:
-                        echo $value['translated'];
-                    endif;
+
+                    echo $value['translated'];
+
                                     ?>
                                 </td>
                                 <td>
@@ -189,7 +178,7 @@ try {
     <!-- fixed bottom footer -->
     <footer class="text-lg-start bg-light">
         <div class="text-center p-3">
-            Copyright &copy; 2022 - IF21B Kelompok 4
+            Copyright &copy; 2022 - IF21B SA<span>TECH</span>
         </div>
     </footer>
 

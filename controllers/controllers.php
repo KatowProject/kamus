@@ -18,14 +18,14 @@ class Controller extends Database
         "is" => 2,
         "ish" => 3,
         "isk" => 4,
-        "i" => 1
+        "sih" => 1
     ];
 
     public $type_h = [
         "is" => "Sunda Sedang",
         "ish" => "Sunda Halus",
         "isk" => "Sunda Kasar",
-        "i" => "Indonesia"
+        "sih" => "Indonesia"
     ];
 
     public function get_word($word, $type)
@@ -41,7 +41,7 @@ class Controller extends Database
                 $this->insert(
                     array(
                         'word' => $word,
-                        'translated' => $result['word'],
+                        'translated' => $result['translated'],
                         'type' => $result['type']
                     )
                 );
@@ -56,38 +56,6 @@ class Controller extends Database
                 ];
             endif;
         endif;
-    }
-
-    public function get_word_i($word)
-    {
-        $_type = $this->type['is'];
-
-        $result = $this->get(strtolower($word), $_type);
-        if ($result):
-            $result['lang'] = $this->type_h['i'];
-
-            return $result;
-        else:
-            $result = $this->scraper->get_data($word, 'sih');
-            if ($result):
-                $result['lang'] = $this->type_h['i'];
-                $this->insert(
-                    array(
-                        'word' => $result['translated'],
-                        'translated' => $word,
-                        'type' => $this->type['is']
-                    )
-                );
-                return $result;
-            else:
-                return [
-                    'word' => $word,
-                    'translated' => $word,
-                    'lang' => 'Native'
-                ];
-            endif;
-        endif;
-
     }
 
     static function splitRemoveSpecialChars($word)
