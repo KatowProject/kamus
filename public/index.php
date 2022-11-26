@@ -1,6 +1,10 @@
 <?php
 define('BASEPATH', 'public');
-require "../controllers/controllers.php";
+
+require_once '../scraper.php';
+require_once '../database/database.php';
+require_once "../controllers/controllers.php";
+
 $controller = new Controller();
 
 try {
@@ -109,7 +113,7 @@ try {
                 <div class="col-12">
                     <div class="card mb-3" style="max-width: auto;">
                         <div class="card-header bg-secondary text-white">
-                            <?= $_POST['type']=="sih" ? "Sunda" : "Indonesia" ?>
+                            <?= $_POST['type'] == "sih" ? "Sunda" : "Indonesia" ?>
                         </div>
 
                         <div class="card-body bg-white">
@@ -125,7 +129,7 @@ try {
                 <div class="col-12">
                     <div class="card mb-3" style="max-width: auto;">
                         <div class="card-header bg-secondary text-white">
-                            <?= $_POST['type']=="sih" ? "Indonesia" : "Sunda" ?>
+                            <?= $_POST['type'] == "sih" ? "Indonesia" : "Sunda" ?>
 
                         </div>
                         <div class="card-body bg-white">

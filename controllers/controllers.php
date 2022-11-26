@@ -1,9 +1,6 @@
 <?php
 defined("BASEPATH") or exit("No direct script access allowed");
 
-require_once '../scraper.php';
-require_once '../database/database.php';
-
 class Controller extends Database
 {
     public $scraper;
@@ -56,6 +53,26 @@ class Controller extends Database
                 ];
             endif;
         endif;
+    }
+
+    public function get_count_words()
+    {
+        // get count table words with type id 1
+        $id = $this->select("SELECT COUNT(*) AS count FROM word WHERE type_id = 1");
+        // get count table words with type id 2
+        $is = $this->select("SELECT COUNT(*) AS count FROM word WHERE type_id = 2");
+        // get count table words with type id 3
+        $ish = $this->select("SELECT COUNT(*) AS count FROM word WHERE type_id = 3");
+        // get count table words with type id 4
+        $isk = $this->select("SELECT COUNT(*) AS count FROM word WHERE type_id = 4");
+
+
+        return [
+            'id' => $id[0]['count'],
+            'is' => $is[0]['count'],
+            'ish' => $ish[0]['count'],
+            'isk' => $isk[0]['count']
+        ];
     }
 
     static function splitRemoveSpecialChars($word)

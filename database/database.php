@@ -1,7 +1,10 @@
 <?php
 defined("BASEPATH") or exit("No direct script access allowed");
 
-include_once '../const.php';
+define("DB_HOST", "localhost");
+define("DB_USER", "root");
+define("DB_PASS", "");
+define("DB_NAME", "kamus-sunda");
 
 class Database
 {
@@ -39,6 +42,17 @@ class Database
         $stmt->execute();
 
         return $stmt->affected_rows;
+    }
+
+    function select($sql)
+    {
+        $result = $this->db->query($sql);
+        $rows = [];
+        while ($row = $result->fetch_assoc()):
+            $rows[] = $row;
+        endwhile;
+
+        return $rows;
     }
 
     function get_lang()
