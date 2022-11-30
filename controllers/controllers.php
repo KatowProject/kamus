@@ -55,6 +55,12 @@ class Controller extends Database
         endif;
     }
 
+    public function get_wordlist_with_type($type)
+    {
+        $result = $this->select("SELECT word.*, lang_type.lang FROM word LEFT JOIN lang_type ON word.type_id = lang_type.id WHERE word.type_id = $type");
+        return $result;
+    }
+
     public function get_count_words()
     {
         // get count table words with type id 1
@@ -73,6 +79,40 @@ class Controller extends Database
             'ish' => $ish[0]['count'],
             'isk' => $isk[0]['count']
         ];
+    }
+
+    function auth($username, $password)
+    {
+        $query = "SELECT * FROM admin WHERE username = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+
+        if ($row):
+            if (password_verify($password, $row['password'])):
+                return [
+                    "id" => $row['id'],
+                    "name" => $row['name'],
+                ];
+            else:
+                return false;
+            endif;
+        else:
+            return false;
+        endif;
+    }
+
+    function delete_word($id)
+    {
+        $query = "DELETE FROM word WHERE id = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+
+        return $stmt->affected_rows;
     }
 
     static function splitRemoveSpecialChars($word)

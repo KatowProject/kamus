@@ -42,6 +42,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/main.css" rel="stylesheet">
+    <link rel="icon" href="/assets/img/logo.png" type="image/png">
     <title>Translate • SATECH</title>
 </head>
 
@@ -49,7 +50,10 @@ try {
     <header>
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="#">SA<span>TECH</span></a>
+                <a class="navbar-brand" href="#">
+                    <img src="/assets/img/logo.png" width="35" height="35" alt="logos">
+                    SA<span>TECH</span>
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -62,11 +66,11 @@ try {
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">kamus</a>
+                            <a class="nav-link">kamus</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">Translate</a>
+                            <a class="nav-link active" href="">Translate</a>
                         </li>
                     </ul>
                 </div>
@@ -113,7 +117,7 @@ try {
                 <div class="col-12">
                     <div class="card mb-3" style="max-width: auto;">
                         <div class="card-header bg-secondary text-white">
-                            <?= $_POST['type'] == "sih" ? "Sunda" : "Indonesia" ?>
+                            <?= $_POST['type']=="sih" ? "Sunda" : "Indonesia" ?>
                         </div>
 
                         <div class="card-body bg-white">
@@ -129,7 +133,7 @@ try {
                 <div class="col-12">
                     <div class="card mb-3" style="max-width: auto;">
                         <div class="card-header bg-secondary text-white">
-                            <?= $_POST['type'] == "sih" ? "Indonesia" : "Sunda" ?>
+                            <?= $_POST['type']=="sih" ? "Indonesia" : "Sunda" ?>
 
                         </div>
                         <div class="card-body bg-white">

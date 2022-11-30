@@ -47,12 +47,15 @@ class Database
     function select($sql)
     {
         $result = $this->db->query($sql);
-        $rows = [];
-        while ($row = $result->fetch_assoc()):
-            $rows[] = $row;
-        endwhile;
 
-        return $rows;
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    function update($sql, $param)
+    {
+        $result = $this->db->query($sql);
+
+        return $result;
     }
 
     function get_lang()

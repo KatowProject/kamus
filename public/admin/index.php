@@ -1,6 +1,11 @@
 <?php
 define('BASEPATH', true);
 
+session_start();
+if (!isset($_SESSION['id'])) {
+  header('Location: login');
+}
+
 require_once '../../scraper.php';
 require_once '../../database/database.php';
 require_once "../../controllers/controllers.php";
@@ -12,7 +17,7 @@ $count = $controller->get_count_words();
 <html lang="en">
 
 <head>
-  <title>Sidebar 05</title>
+  <title>Dashboard | SATECH Page Admin</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
