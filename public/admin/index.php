@@ -31,7 +31,10 @@ $count = $controller->get_count_words();
 <body>
 
   <div class="wrapper d-flex align-items-stretch">
-    <?php include 'partials/sidebar.php'; ?>
+    <?php
+    $page = 'dashboard';
+    include 'partials/sidebar.php';
+    ?>
     <!-- Page Content  -->
     <div id="content" class="p-4 p-md-5 pt-5">
       <div class="row">

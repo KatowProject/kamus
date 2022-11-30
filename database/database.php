@@ -51,7 +51,7 @@ class Database
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    function update($sql, $param)
+    function update($sql)
     {
         $result = $this->db->query($sql);
 

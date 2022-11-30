@@ -55,6 +55,17 @@ class Controller extends Database
         endif;
     }
 
+    public function get_word_by_id($id)
+    {
+        $result = $this->select("SELECT * FROM word WHERE id = $id");
+
+        if ($result):
+            return $result[0];
+        else:
+            return false;
+        endif;
+    }
+
     public function get_wordlist_with_type($type)
     {
         $result = $this->select("SELECT word.*, lang_type.lang FROM word LEFT JOIN lang_type ON word.type_id = lang_type.id WHERE word.type_id = $type");
@@ -79,6 +90,42 @@ class Controller extends Database
             'ish' => $ish[0]['count'],
             'isk' => $isk[0]['count']
         ];
+    }
+
+    public function update_word($id, $data)
+    {
+        try {
+            if (!isset($data['name']) || !isset($data['translated'])):
+                return false;
+            endif;
+
+            $query = $this->update("UPDATE word SET name = '$data[name]', translated = '$data[translated]' WHERE id = $id");
+
+            return $query;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+    public function add_word($data)
+    {
+        try {
+            if (!isset($data['name']) || !isset($data['translated'])):
+                return false;
+            endif;
+
+            $query = $this->insert(
+                array(
+                    'word' => $data['name'],
+                    'translated' => $data['translated'],
+                    'type' => $data['type_id']
+                )
+            );
+
+            return $query;
+        } catch (Exception $e) {
+            return false;
+        }
     }
 
     function auth($username, $password)

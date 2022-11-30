@@ -8,16 +8,16 @@
     <div class="p-4">
         <h1><a href="/" class="logo">SATECH <span>Admin Page</span></a></h1>
         <ul class="list-unstyled components mb-5">
-            <li class="active">
+            <li class="<?php echo $page == 'dashboard' ? 'active' : '' ?>">
                 <a href="/admin/"><span class="fa fa-home mr-3"></span> Dashboard</a>
             </li>
-            <li>
+            <li class="<?php echo $page == 'translate-2' ? 'active' : '' ?>">
                 <a href="/admin/word.php/?type=is"><span class="fa fa-language mr-3"></span> Sunda Sedang</a>
             </li>
-            <li>
+            <li class="<?php echo $page == 'translate-3' ? 'active' : '' ?>">
                 <a href="/admin/word.php/?type=ish"><span class="fa fa-language mr-3"></span> Sunda Halus</a>
             </li>
-            <li>
+            <li class="<?php echo $page == 'translate-4' ? 'active' : '' ?>">
                 <a href="/admin/word.php/?type=isk"><span class="fa fa-language mr-3"></span> Sunda Kasar</a>
             </li>
             <li>
