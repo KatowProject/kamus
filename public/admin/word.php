@@ -43,7 +43,7 @@ endif;
             $title = "Indonesia";
             break;
         case 2:
-            $title = "Sunda Sedang";
+            $title = "Sunda Umum";
             break;
         case 3:
             $title = "Sunda Halus";
@@ -123,9 +123,11 @@ endif;
 
                                 <td>
                                     <button data-id="<?= $word['id'] ?>" class="btn btn-primary edit"
-                                        data-bs-toggle="modal" data-bs-target="#staticBackdrop">Edit</button>
+                                        data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i
+                                            class="fa fa-edit"></i>Edit</button>
                                     <button data-id="<?= $word['id'] ?>" class="btn btn-danger delete"
-                                        onclick="confirm('Apakah kamu yakin?')">Delete</button>
+                                        onclick="confirm('Apakah kamu yakin?')"> <i class="fa fa-trash"></i>
+                                        Delete</button>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
