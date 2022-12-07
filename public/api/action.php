@@ -31,6 +31,11 @@ switch ($action):
             'status' => 'success',
             'message' => 'Word has been deleted'
         ]);
+
+        $controller->insertLog([
+            'message' => 'Deleted word with id: ' . $id,
+            'author_id' => $_SESSION['id'] ?? 2
+        ]);
         break;
     case 'edit':
         $data = $controller->update_word($id, $_POST);
@@ -38,6 +43,11 @@ switch ($action):
             echo json_encode([
                 'status' => 'success',
                 'message' => 'Word has been updated'
+            ]);
+
+            $controller->insertLog([
+                'message' => 'Updated word: ' . $_POST['name'] . ' with id: ' . $id,
+                'author_id' => $_SESSION['id'] ?? 2
             ]);
         else:
             echo json_encode([
@@ -69,6 +79,11 @@ switch ($action):
             echo json_encode([
                 'status' => 'success',
                 'message' => 'Word has been added'
+            ]);
+
+            $controller->insertLog([
+                'message' => 'Added new word: ' . $data['word'] . ' with id: ' . $data['id'],
+                'author_id' => $_SESSION['id'] ?? 2
             ]);
         else:
             echo json_encode([

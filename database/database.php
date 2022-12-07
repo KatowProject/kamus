@@ -41,7 +41,12 @@ class Database
         $stmt->bind_param("sss", $word['word'], $word['translated'], $word['type']);
         $stmt->execute();
 
-        return $stmt->affected_rows;
+        return [
+            "id" => $stmt->insert_id,
+            "word" => $word['word'],
+            "translated" => $word['translated'],
+            "type" => $word['type'],
+        ];
     }
 
     function select($sql)

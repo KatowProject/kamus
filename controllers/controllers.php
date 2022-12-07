@@ -35,13 +35,18 @@ class Controller extends Database
         else:
             $result = $this->scraper->get_data($word, $type);
             if ($result):
-                $this->insert(
+                $a = $this->insert(
                     array(
                         'word' => $word,
                         'translated' => $result['translated'],
                         'type' => $result['type']
                     )
                 );
+
+                $this->insertLog([
+                    'message' => "Added new word: $word with id: " . $a['id'],
+                    'author_id' => 2
+                ]);
 
                 $result['lang'] = $this->type_h[$type];
                 return $result;
@@ -160,6 +165,28 @@ class Controller extends Database
         $stmt->execute();
 
         return $stmt->affected_rows;
+    }
+
+    function insertLog($data)
+    {
+        $query = "INSERT INTO log (message, author_id) VALUES (?, ?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("si", $data['message'], $data['author_id']);
+        $stmt->execute();
+
+        return $stmt->affected_rows;
+    }
+
+    function getLogs()
+    {
+        $query = "SELECT log.*, admin.name FROM log LEFT JOIN admin ON log.author_id = admin.id ORDER BY log.id DESC";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $row = $result->fetch_all(MYSQLI_ASSOC);
+
+        return $row;
     }
 
     static function splitRemoveSpecialChars($word)
