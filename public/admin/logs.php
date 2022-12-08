@@ -59,38 +59,28 @@ $logs = $controller->getLogs();
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
-                                <th scope="col">Indonesia</th>
-                                <th scope="col">Sunda</th>
-                                <th scope="col">Type</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">Log Message</th>
+                                <th scope="col">Log Date</th>
+                                <th scope="col">Author</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             $no = 1;
-                            foreach ($words as $word):
+                            foreach ($logs as $log):
                             ?>
                             <tr>
                                 <th scope="row">
                                     <?= $no++ ?>
                                 </th>
                                 <td>
-                                    <?= $word['name'] ?>
+                                    <?= $log['message'] ?>
                                 </td>
                                 <td>
-                                    <?= $word['translated'] ?>
+                                    <?= $log['audit_date'] ?>
                                 </td>
                                 <td>
-                                    <?= $word['lang'] ?>
-                                </td>
-
-                                <td>
-                                    <button data-id="<?= $word['id'] ?>" class="btn btn-primary edit"
-                                        data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i
-                                            class="fa fa-edit"></i>Edit</button>
-                                    <button data-id="<?= $word['id'] ?>" class="btn btn-danger delete"
-                                        onclick="confirm('Apakah kamu yakin?')"> <i class="fa fa-trash"></i>
-                                        Delete</button>
+                                    <?= $log['name'] ?>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

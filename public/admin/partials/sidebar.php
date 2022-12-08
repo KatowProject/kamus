@@ -20,6 +20,9 @@
             <li class="<?php echo $page == 'translate-4' ? 'active' : '' ?>">
                 <a href="/admin/word.php/?type=isk"><span class="fa fa-language mr-3"></span> Sunda Kasar</a>
             </li>
+            <li class="<?php echo $page == 'logs' ? 'active' : '' ?>">
+                <a href="/admin/logs"><span class="fa fa-history mr-3"></span> Audit Logs</a>
+            </li>
             <li>
                 <a href="/admin/logout.php" class="btn btn-danger mt-3"><i class="fa fa-sign-out mr-3"></i> Logout</a>
             </li>
