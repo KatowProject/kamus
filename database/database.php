@@ -22,16 +22,21 @@ class Database
     function get($word, $type)
     {
         // get word and get type name in relation
-        $query = "SELECT word.*, lang_type.lang FROM word LEFT JOIN lang_type ON word.type_id = lang_type.id WHERE word.name = ? AND word.type_id = ?";
+        $query = "SELECT word.*, lang_type.lang FROM word LEFT JOIN lang_type ON word.type_id = lang_type.id";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param("ss", $word, $type);
         $stmt->execute();
 
-        // return result one row
+        // sequential array
         $result = $stmt->get_result();
-        $row = $result->fetch_assoc();
+        $rows = $result->fetch_all(MYSQLI_ASSOC);
 
-        return $row;
+        foreach ($rows as $row):
+            if ($row['name'] == $word && $row['type_id'] == $type):
+                return $row;
+            endif;
+        endforeach;
+
+        return false;
     }
 
     function insert($word)
