@@ -41,42 +41,17 @@ try {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="assets/css/main.css" rel="stylesheet">
     <link rel="icon" href="/assets/img/logo.png" type="image/png">
     <title>Translate • SATECH</title>
 </head>
 
 <body class="bg-light">
-    <header>
-        <nav class="navbar navbar-expand-lg">
-            <div class="container">
-                <a class="navbar-brand" href="#">
-                    <img src="/assets/img/logo.png" width="35" height="35" alt="logos">
-                    SA<span>TECH</span>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/about">about</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link">kamus</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link active" href="">Translate</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <?php
+    $page = 'kamus';
+    require_once 'partials/header.php';
+    ?>
 
     <main class="d-flex align-items-center" style="min-height: 75vh;">
         <div class="container py-3">
@@ -101,8 +76,15 @@ try {
                         </div>
 
                         <div class="col-md-12 text-center">
-                            <button type="submit" class="btn btn-primary" name="submit" id="submit"
-                                value="submit">Submit</button>
+                            <button type="submit" class="btn btn-primary" name="submit" id="submit" value="submit">
+                                <i class="fa fa-search"></i> Search
+                            </button>
+
+                            <!-- button help -->
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">
+                                <i class="fa fa-question-circle"></i> Help
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -117,7 +99,7 @@ try {
                 <div class="col-12">
                     <div class="card mb-3" style="max-width: auto;">
                         <div class="card-header bg-secondary text-white">
-                            <?= $_POST['type']=="sih" ? "Sunda" : "Indonesia" ?>
+                            <?= $_POST['type'] == "sih" ? "Sunda" : "Indonesia" ?>
                         </div>
 
                         <div class="card-body bg-white">
@@ -133,7 +115,7 @@ try {
                 <div class="col-12">
                     <div class="card mb-3" style="max-width: auto;">
                         <div class="card-header bg-secondary text-white">
-                            <?= $_POST['type']=="sih" ? "Indonesia" : "Sunda" ?>
+                            <?= $_POST['type'] == "sih" ? "Indonesia" : "Sunda" ?>
 
                         </div>
                         <div class="card-body bg-white">
@@ -189,6 +171,37 @@ try {
             Copyright &copy; 2022 - IF21B SA<span>TECH</span>
         </div>
     </footer>
+
+    <!-- modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Help</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- about -->
+                    <h5>About</h5>
+                    <p>
+                        Kamus Sunda adalah sebuah kamus yang berisi kata-kata dalam bahasa Sunda. Kamus ini dibuat untuk
+                        memudahkan
+                        pengguna dalam mencari arti kata dalam bahasa Sunda.
+                    </p>
+
+                    <!-- usage -->
+                    <h5>Usage</h5>
+                    <p>
+                        Masukkan kata yang ingin dicari artinya, kemudian pilih tipe bahasa yang ingin dicari.
+                        kemudian klik tombol submit untuk menampilkan hasil pencarian.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

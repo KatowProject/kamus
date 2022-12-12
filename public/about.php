@@ -1,3 +1,5 @@
+<?php define('BASEPATH', 'public'); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,41 +8,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="assets/css/main.css" rel="stylesheet">
     <title>About • SATECH</title>
 </head>
 
 <body class="bg-light">
-    <header>
-        <nav class="navbar navbar-expand-lg">
-            <div class="container">
-                <a class="navbar-brand" href="#">
-                    <img src="/assets/img/logo.png" width="35" height="35" alt="logos">
-                    SA<span>TECH</span>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">about</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">kamus</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">Translate</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <?php
+    $page = 'about';
+    require_once 'partials/header.php';
+    ?>
 
     <main>
         <div class="row vertical-center" style="min-height: 75vh;">
