@@ -1,23 +1,54 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+define('BASEPATH', true);
 
-// require_once '../vendor/autoload.php';
+require_once '../../scraper.php';
+require_once '../../database/database.php';
+require_once '../../controllers/controllers.php';
 
-// use duzun\hQuery;
-// $doc = hQuery::fromURL('https://kbbi.kemdikbud.go.id/entri/kepala');
+$controller = new Controller();
 
-// $title = $doc->find('title')->text();
-// $content = $doc->find('div.body-content');
+if (isset($_GET['word']) && isset($_GET['type'])):
+    $word = $_GET['word'];
+    $type = $_GET['type'];
 
-// $words = [];
-// foreach ($content->find("h2") as $h2) {
-//     $words[] = $h2->text();
-// }
+    if (!array_key_exists($type, $controller->type)):
+        // set status code
+        http_response_code(400);
+        echo json_encode([
+            'status' => 'error',
+            'message' => 'Type not found'
+        ]);
+        exit;
+    endif;
 
-// $result = [
-//     'title' => $title,
-//     'words' => $words
-// ];
+    $sentences = [];
+    $word = $word ? trim($_GET['word']) : '';
 
-// header('Content-Type: application/json');
-// header('Access-Control-Allow-Origin: *');
+    $words = $controller::splitRemoveSpecialChars($word);
+    foreach ($words as $key => $word):
+        $get_word = $controller->get_word($word, $type);
+        $w[] = $get_word['translated'];
+
+        if (in_array($get_word, $sentences)):
+            continue;
+        else:
+            $sentences[] = $get_word;
+        endif;
+    endforeach;
+
+    echo json_encode([
+        'status' => 'success',
+        'data' => [
+            'sentences' => $sentences
+        ]
+    ]);
+else:
+    // set status code
+    http_response_code(400);
+    echo json_encode([
+        'status' => 'error',
+        'message' => 'Bad request'
+    ]);
+
+    exit;
+endif;
