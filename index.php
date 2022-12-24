@@ -1,9 +1,9 @@
 <?php
 define('BASEPATH', 'public');
 
-require_once '../scraper.php';
-require_once '../database/database.php';
-require_once "../controllers/controllers.php";
+require_once 'scraper.php';
+require_once 'database/database.php';
+require_once "controllers/controllers.php";
 
 $controller = new Controller();
 
@@ -43,7 +43,7 @@ try {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="assets/css/main.css" rel="stylesheet">
-    <link rel="icon" href="/assets/img/logo.png" type="image/png">
+    <link rel="icon" href="assets/img/logo.png" type="image/png">
     <title>Translate • SATECH</title>
 </head>
 

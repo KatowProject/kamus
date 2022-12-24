@@ -6,9 +6,9 @@ if (isset($_SESSION['id'])) {
     header('Location: ./');
 }
 
-require_once '../../scraper.php';
-require_once '../../database/database.php';
-require_once "../../controllers/controllers.php";
+require_once '../scraper.php';
+require_once '../database/database.php';
+require_once "../controllers/controllers.php";
 
 $controller = new Controller();
 
@@ -21,7 +21,7 @@ if (isset($_POST['login'])) {
         $_SESSION['id'] = $login['id'];
         $_SESSION['name'] = $login['name'];
 
-        header('Location: /admin');
+        header('Location: ./');
         exit;
     else:
         $error = 'Username or password is incorrect';
@@ -98,14 +98,14 @@ if (isset($_POST['login'])) {
 
 
     <!-- Custom styles for this template -->
-    <link href="/assets/css/signin.css" rel="stylesheet">
+    <link href="../assets/css/signin.css" rel="stylesheet">
 </head>
 
 <body class="text-center">
 
     <main class="form-signin w-100 m-auto">
         <form method="POST">
-            <img class="mb-4" src="/assets/img/logo.png" alt="" width="150" height="150">
+            <img class="mb-4" src="../assets/img/logo.png" alt="" width="150" height="150">
             <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
             <div class="form-floating">

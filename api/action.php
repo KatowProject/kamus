@@ -7,9 +7,9 @@ if (!isset($_SESSION['id'])):
     header('Location: /admin/login');
 endif;
 
-require_once '../../scraper.php';
-require_once '../../database/database.php';
-require_once "../../controllers/controllers.php";
+require_once '../scraper.php';
+require_once '../database/database.php';
+require_once "../controllers/controllers.php";
 
 $id = $_GET['id'] ?? null;
 $action = $_GET['type'] ?? null;

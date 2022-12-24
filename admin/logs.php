@@ -5,9 +5,9 @@ if (isset($_SESSION['id'])) {
     header('Location: ./');
 }
 
-require_once '../../scraper.php';
-require_once '../../database/database.php';
-require_once "../../controllers/controllers.php";
+require_once '../scraper.php';
+require_once '../database/database.php';
+require_once "../controllers/controllers.php";
 
 $controller = new Controller();
 $logs = $controller->getLogs();
@@ -26,7 +26,7 @@ $logs = $controller->getLogs();
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 
     <style>
         .form-control {
@@ -112,7 +112,7 @@ $logs = $controller->getLogs();
 
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/js/main.js"></script>
+    <script src="../assets/js/main.js"></script>
 </body>
 
 </html>

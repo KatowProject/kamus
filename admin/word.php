@@ -5,9 +5,9 @@ if (isset($_SESSION['id'])) {
     header('Location: ./');
 }
 
-require_once '../../scraper.php';
-require_once '../../database/database.php';
-require_once "../../controllers/controllers.php";
+require_once '../scraper.php';
+require_once '../database/database.php';
+require_once "../controllers/controllers.php";
 
 $controller = new Controller();
 if (isset($_GET['type'])):
@@ -63,7 +63,7 @@ endif;
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 
     <style>
         .form-control {
@@ -84,9 +84,9 @@ endif;
                 <div class="col-lg-12">
                     <h2>
                         <?= $title ?>
-                            <button data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                                class="btn btn-primary float-end add"><i class="fa fa-plus"></i> Add
-                                Word</button>
+                        <button data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                            class="btn btn-primary float-end add"><i class="fa fa-plus"></i> Add
+                            Word</button>
                     </h2>
                 </div>
                 <hr style="border: 2px solid black;">
@@ -159,7 +159,7 @@ endif;
 
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/js/main.js"></script>
+    <script src="../assets/js/main.js"></script>
 
     <script>
         $(".edit").on("click", async function () {

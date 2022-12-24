@@ -6,25 +6,25 @@
         </button>
     </div>
     <div class="p-4">
-        <h1><a href="/" class="logo">SATECH <span>Admin Page</span></a></h1>
+        <h1><a href="../" class="logo">SATECH <span>Admin Page</span></a></h1>
         <ul class="list-unstyled components mb-5">
             <li class="<?php echo $page == 'dashboard' ? 'active' : '' ?>">
-                <a href="/admin/"><span class="fa fa-home mr-3"></span> Dashboard</a>
+                <a href="./"><span class="fa fa-home mr-3"></span> Dashboard</a>
             </li>
             <li class="<?php echo $page == 'translate-2' ? 'active' : '' ?>">
-                <a href="/admin/word.php/?type=is"><span class="fa fa-language mr-3"></span> Sunda Sedang</a>
+                <a href="word.php?type=is"><span class="fa fa-language mr-3"></span> Sunda Sedang</a>
             </li>
             <li class="<?php echo $page == 'translate-3' ? 'active' : '' ?>">
-                <a href="/admin/word.php/?type=ish"><span class="fa fa-language mr-3"></span> Sunda Halus</a>
+                <a href="word.php?type=ish"><span class="fa fa-language mr-3"></span> Sunda Halus</a>
             </li>
             <li class="<?php echo $page == 'translate-4' ? 'active' : '' ?>">
-                <a href="/admin/word.php/?type=isk"><span class="fa fa-language mr-3"></span> Sunda Kasar</a>
+                <a href="word.php?type=isk"><span class="fa fa-language mr-3"></span> Sunda Kasar</a>
             </li>
             <li class="<?php echo $page == 'logs' ? 'active' : '' ?>">
-                <a href="/admin/logs"><span class="fa fa-history mr-3"></span> Audit Logs</a>
+                <a href="logs.php"><span class="fa fa-history mr-3"></span> Audit Logs</a>
             </li>
             <li>
-                <a href="/admin/logout.php" class="btn btn-danger mt-3"><i class="fa fa-sign-out mr-3"></i> Logout</a>
+                <a href="logout.php" class="btn btn-danger mt-3"><i class="fa fa-sign-out mr-3"></i> Logout</a>
             </li>
         </ul>
         <!-- create logout -->
