@@ -169,7 +169,7 @@ endif;
 
             var id = $(this).data("id");
             const response = await $.ajax({
-                url: "/api/action.php",
+                url: "../api/action.php",
                 type: "GET",
                 data: {
                     id: id,
@@ -212,7 +212,7 @@ endif;
             $(".save").on("click", async function () {
                 const form = new FormData($("#edit-form")[0]);
                 const response = await $.ajax({
-                    url: "/api/action.php?type=edit&id=" + id,
+                    url: "../api/action.php?type=edit&id=" + id,
                     type: "POST",
                     data: form,
                     processData: false,
@@ -231,7 +231,7 @@ endif;
         $(".delete").on("click", async function () {
             var id = $(this).data("id");
             const response = await $.ajax({
-                url: "/api/action.php?type=delete&id=" + id,
+                url: "../api/action.php?type=delete&id=" + id,
                 type: "DELETE",
                 headers: {
                     "Content-Type": "application/json"
@@ -281,7 +281,7 @@ endif;
             $(".save").on("click", async function () {
                 const form = new FormData($("#add-form")[0]);
                 const response = await $.ajax({
-                    url: "/api/action.php?type=add&id=dummy",
+                    url: "../api/action.php?type=add&id=dummy",
                     type: "POST",
                     data: form,
                     processData: false,
