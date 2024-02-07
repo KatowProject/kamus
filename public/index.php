@@ -13,6 +13,11 @@ try {
         $word = isset($_POST['word']) ? trim($_POST['word']) : '';
         $type = $_POST['type'];
 
+        // check is js script or HTML
+        if (preg_match('/<script>/', $word) || preg_match('/<html>/', $word)) :
+            throw new Exception('Bad request');
+        endif;
+
         $words = $controller::splitRemoveSpecialChars($word);
         foreach ($words as $key => $word) :
             $get_word = $controller->get_word($word, $type);
