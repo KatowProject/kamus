@@ -13,8 +13,8 @@ try {
         $word = isset($_POST['word']) ? trim($_POST['word']) : '';
         $type = $_POST['type'];
 
-        // check is js script or HTML
-        if (preg_match('/<script>/', $word) || preg_match('/<html>/', $word)) :
+        // check if the word contains script or HTML tags
+        if (preg_match('/<script>|<html>|<style>/', $word)) :
             throw new Exception('Bad request');
         endif;
 
