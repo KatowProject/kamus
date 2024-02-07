@@ -23,22 +23,24 @@
         <div class="row vertical-center" style="min-height: 75vh;">
             <div class="col-lg-6">
                 <div class="h-100 p-5">
-                    <h1><b>Penerjemah Bahasa Indonesia ke Bahasa Sunda</b></h1>
-                    <p style="font-size: 1.5rem;">
-                        Sebagai Final Project Semester 3 Universitas Buana Perjuangan Karawang
+                    <h1><b>Translator Bahasa Indonesia ke Bahasa Sunda</b></h1>
+                    <p style="font-size: 1.0rem;">
+                        <!-- buatkan deskripsi tentang translate ini -->
+                        Selamat datang di Translator Bahasa Indonesia ke Bahasa Sunda kami. Alat ini dirancang untuk membantu Anda menerjemahkan kata, frasa, dan kalimat dari Bahasa Indonesia ke Bahasa Sunda dengan mudah dan cepat.
+                        <br>
+                        Kami berusaha untuk memberikan terjemahan yang akurat dan relevan untuk memudahkan komunikasi dan pembelajaran Anda. Selamat mencoba!
                     </p>
 
                     <!-- button terjemah sekarang-->
                     <br>
-                    <a href="/" class="btn btn-primary">Terjemah Sekarang</a>
+                    <a href="./" class="btn btn-primary">Terjemahkan Sekarang</a>
 
                 </div>
             </div>
 
             <div class="col-lg-6">
                 <div class="px-4 py-5">
-                    <img src="assets/img/thumb.png" width="100%" class="img-fluid text-center" loading="layz"
-                        alt="Responsive image">
+                    <img src="assets/img/thumb.png" width="100%" class="img-fluid text-center" loading="layz" alt="Responsive image">
                 </div>
             </div>
         </div>
@@ -48,7 +50,7 @@
     <!-- fixed bottom footer -->
     <footer class="text-lg-start">
         <div class="text-center p-3">
-            Copyright &copy; 2022 - IF21B SA<span>TECH</span>
+            Copyright &copy; 2023 SA<span>TECH</span>
         </div>
     </footer>
 
