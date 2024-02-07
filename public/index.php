@@ -15,7 +15,11 @@ try {
 
         // check if the word contains script or HTML tags
         if (preg_match('/<script>|<html>|<style>/', $word)) :
-            throw new Exception('Bad request');
+            // redirect to error page
+            // give alert js
+            echo "<script>alert('Bad request')</script>";
+            // redirect to error page
+            echo "<script>window.location.href = './'</script>";
         endif;
 
         $words = $controller::splitRemoveSpecialChars($word);
