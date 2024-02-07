@@ -1,9 +1,9 @@
 <?php
 define('BASEPATH', 'public');
 
-require_once 'scraper.php';
-require_once 'database/database.php';
-require_once "controllers/controllers.php";
+require_once '../scraper.php';
+require_once '../database/database.php';
+require_once "../controllers/controllers.php";
 
 $controller = new Controller();
 
